@@ -1,56 +1,47 @@
 import React, { useState, useEffect }  from 'react';
 import Products from './components/Products';
 import Filter from './components/Filter';
+import Basket from './components/Basket';
+import { element, number } from 'prop-types';
 
-// on min: 30:52
+// on min: 53:34
+// json-server public/db.json --port 8000
 
-interface IProps {
-  product: string;
-}
 
-interface IProducts {
-  products: string[];
-}
+interface IProduct {
+  id: number,
+  sku: number,
+  title: string,
+  description: string,
+  availableSizes: string[],
+  price: number,
+  isFreeShipping: boolean
+};
 
-const App: React.FC<IProps>  = (props) => {
+
+const App: React.FC = () => {
 
   // State
-  const [products, setProducts ] = useState<Array<number> | null>([]);
-  const [filteredProducts, setFilteredProducts ] = useState<Array<number> | null>();
-  const [size, setSize ] = useState<number | null>();
-  const [sort, setSort ] = useState<number | null>();
+  const [products, setProducts ] = useState<Array<IProduct> >([]);
+  const [filteredProducts, setFilteredProducts ] = useState<Array<IProduct>>([]);
+  const [size, setSize ] = useState<any >();
+  const [sort, setSort ] = useState<any >();
+  const [cartItems, setCartItems ] = useState<any>([]);
 
-
-  //ComponentWillMount
   useEffect(() => {
-    fetch("http://localhost:8000/products").then(res => res.json())
-    .then(data => {
-      setProducts(data);
-      setFilteredProducts(data);
-    })
-  })
 
-  const handleChangeSize = (e) => {
-    setSize(e.target.value);
-    listProducts();
+    /**
+     * setProducts(data);
+        setFilteredProducts(data);
+     */
 
-  };
-
-  // TO FIX
-  const listProducts = () => {
-    products.sort((a, b) => {
-        (sort === 'lowestprice'
-          ? ((a.price > b.price) ? 1 : -1)
-          : ((a.price < b.price) ? 1 : -1)));
-    } else {
-      products.sort((a, b) => (a.id > b.id) ? 1 : -1);
+    if(localStorage.getItem('cartItems')) {
+      setCartItems(JSON.parse(localStorage.getItem('cartItems')));
+     // setCartItems((arr:any ) =>[ ...arr, JSON.parse(localStorage.getItem('cartItems'))]);
     }
-    if (size !== '') {
-      return { filteredProducts: products.filter(a => a.availableSizes.indexOf(size.toUpperCase()) >= 0) };
-    }
-    return { filteredProducts: products };
-    })
-}};
+
+
+  }, []);
 
 
   return (
@@ -69,8 +60,8 @@ const App: React.FC<IProps>  = (props) => {
           <hr />
           <Products products={filteredProducts} handleAddToCart={handleAddToCart} />
         </div>
-        <div className="col-md-8">
-          A
+        <div className="col-md-4">
+          <Basket cartItems={cartItems} handleRemoveFromCart={handleRemoveFromCart} />
         </div>
       </div>
     </div>

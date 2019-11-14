@@ -1,17 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import util from '../utilities/util';
+import { filterProducts, sortProducts } from '../actions/productActions';
 
-interface IProps {
-    products: number[];
-    handleAddToCart: () => void;
-  }
+
+ interface IProps {
+     count: number;
+     handleChangeSort: any;
+     handleChangeSize: any;
+     sort: number;
+     size: number;
+
+   }
   
-const Filter:  React.FC<IProps>  = (props) => {
+const Filter:  React.FC<IProps> = (props) => {
 
     return (
         <div className="row" >
             <div className="col-md-4">
-                {props.count} products found.
+                {props.filterProducts.length} products found.
             </div>
             <div className="col-md-4">
                 <label>
@@ -19,7 +26,7 @@ const Filter:  React.FC<IProps>  = (props) => {
                     <select 
                         className="form-control" 
                         value={props.sort}
-                        onChange={props.handleChangeSort}
+                        onChange={(e) => props.sortProducts(props.filterProducts, e.target.value)}
                     >
                         <option value="">Select</option>
                         <option value="lowest">lowest to highest</option>
@@ -29,11 +36,35 @@ const Filter:  React.FC<IProps>  = (props) => {
                 </label>
             </div>
             <div className="col-md-4">
-                A
+                <label>
+                    Filter size
+                    <select 
+                        className="form-control" 
+                        value={props.size}
+                        onChange={(e) => props.filterProducts(props.products, e.target.value)}
+                    >
+                        <option value="">ALL</option>
+                        <option value="x">XS</option>
+                        <option value="s">S</option>
+                        <option value="m">M</option>
+                        <option value="l">L</option>
+                        <option value="xl">XL</option>
+                        <option value="xxl">XXL</option>
+                    </select>
+                </label>
             </div>
         </div>
     );
     
 }
 
-export default Filter;
+const mapStateToProps = (state) => {
+    return {
+        products: state.products.items,
+        filteredProducts: state.products.items,
+        size: state.products.size,
+        sort: state.products.sort
+    };
+};
+
+export default connect(mapStateToProps, { filterProducts, sortProducts })(Filter);
