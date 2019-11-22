@@ -1,20 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import util from '../utilities/util';
 import { filterProducts, sortProducts } from '../actions/productActions';
-
-
- interface IProps {
-     count: number;
-     handleChangeSort: any;
-     handleChangeSize: any;
-     sort: number;
-     size: number;
-
-   }
+import { AppState } from '../reducers/index';
+import { IFilterProps } from '../types';
   
-const Filter:  React.FC<IProps> = (props) => {
-
+const Filter:  React.FC = (props: any) => {
+ 
     return (
         <div className="row" >
             <div className="col-md-4">
@@ -58,7 +49,7 @@ const Filter:  React.FC<IProps> = (props) => {
     
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
     return {
         products: state.products.items,
         filteredProducts: state.products.items,

@@ -2,25 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import util from '../utilities/util';
 import { removeFromCart } from '../actions/cartActions';
-
+import { AppState } from '../reducers/index';
+import { IProduct, IBasketProps} from '../types';
  
-interface IProduct {
-    id: number,
-    sku: number,
-    title: string,
-    description: string,
-    availableSizes: string[],
-    price: number,
-    isFreeShipping: boolean,
-    count?: number
-}
-
-interface IProps {
-    products: Array<IProduct>;
-    cartItems: Array<IProduct>;
-  }
   
-const Basket:  React.FC<any>  = (props) => {
+const Basket:  React.FC  = (props: any) => {
 
     const { cartItems } = props;
 
@@ -45,7 +31,7 @@ const Basket:  React.FC<any>  = (props) => {
                             )
                         )}
                     </ul>
-                    Total: {util.formatCurrency(cartItems.reduce((a: number, c: number) => a + c.price*c.count, 0))}
+                    Total: {util.formatCurrency(cartItems.reduce((a: any, c: any) => a + c.price*c.count, 0))}
                     <br />
                     <button className="btn btn-primary" onClick={() => alert("Checkout")}>Checkout</button>
                 </div>
@@ -56,7 +42,7 @@ const Basket:  React.FC<any>  = (props) => {
     );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     cartItems: state.cart.items
 });
 

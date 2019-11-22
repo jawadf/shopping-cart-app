@@ -1,16 +1,21 @@
-import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_SIZE, ORDER_PRODUCTS_BY_PRICE } from "./types"
+import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_SIZE, ORDER_PRODUCTS_BY_PRICE } from "./types";
+import { IProduct } from '../types';
+import { AppState } from '../reducers/index';
+import { Action } from 'redux';
+import { ThunkAction } from 'redux-thunk';
 
-export const fetchProducts = () => (dispatch) => {
+export const fetchProducts = () : ThunkAction<void, AppState, null, Action<string>> => (dispatch) => {
     fetch("http://localhost:8000/products").then(res => res.json())
     .then(data => {
-        return {
-            type: FETCH_PRODUCTS,
+        
+        return dispatch({
+            type: FETCH_PRODUCTS, 
             payload: data
-        }        
+        });        
     });
 };
 
-export const filterProducts = (products, size) => (dispatch) => {
+export const filterProducts = (products: Array<IProduct>, size: string)  : ThunkAction<void, AppState, null, Action<string>> => (dispatch) => {
     return dispatch({ 
         type: FILTER_PRODUCTS_BY_SIZE,
         payload: {
@@ -20,7 +25,7 @@ export const filterProducts = (products, size) => (dispatch) => {
     });
 };
 
-export const sortProducts = (items, sort) => (dispatch) => {
+export const sortProducts = (items: Array<IProduct>, sort: string)  : ThunkAction<void, AppState, null, Action<string>> => (dispatch) => {
     const products = items.slice();
     if (sort !== '') {
         products.sort((a, b) =>
