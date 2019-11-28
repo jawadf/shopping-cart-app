@@ -8,16 +8,16 @@ import { ThunkAction } from 'redux-thunk';
 export const addToCart = (items: any, product: IProduct): ThunkAction<void, AppState, null, Action<string>> => (dispatch) => {
     const cartItems = items.slice();
 
-    let productAlreadyInCart = false;
+    let productAlreadyInCart = false; 
     cartItems.forEach((item: any) => {
-      if(item.id === product.id) {
+      if(item.id == product.id) {
         productAlreadyInCart = true;
         item.count++;
       } 
     });
 
     if(!productAlreadyInCart) {
-        cartItems.push((arr : any) => [ ...arr, { product, count:1} ]);
+        cartItems.push({...product, count:1 });
     }
 
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -28,8 +28,8 @@ export const addToCart = (items: any, product: IProduct): ThunkAction<void, AppS
 
 // REMOVE FROM CART
 export const removeFromCart = (items: any, product: IProduct): ThunkAction<void, AppState, null, Action<string>> => (dispatch) => {
-  const cartItems = items.slice().arr.filter((el:any) => el.id !=product.id);
-  localStorage.setItem('cartItems', cartItems);
+  const cartItems = items.slice().filter((el:any) => el.id !== product.id);
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
   
   return dispatch({ type: REMOVE_FROM_CART, payload: { cartItems: cartItems }})
 };

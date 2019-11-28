@@ -1,8 +1,9 @@
 import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_SIZE, ORDER_PRODUCTS_BY_PRICE } from "../actions/types";
+import { IProductState } from  '../types';
 
-const initialState = { items: [], filteredItems: [], size: '' };
-
-export default function(state = initialState, action) {
+const initialState: IProductState = { items: [], filteredItems: [], size: '', sort: '' };
+ 
+export default function(state = initialState, action): IProductState {
     switch(action.type) {
         case FETCH_PRODUCTS:
             return { ...state, items: action.payload, filteredItems: action.payload };

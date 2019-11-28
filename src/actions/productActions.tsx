@@ -3,17 +3,33 @@ import { IProduct } from '../types';
 import { AppState } from '../reducers/index';
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
+import axios from 'axios'; 
+  
+const ax = axios.create({
+  baseURL: 'http://10.0.0.16/products_api/public/index.php'
+});
 
-export const fetchProducts = () : ThunkAction<void, AppState, null, Action<string>> => (dispatch) => {
-    fetch("http://localhost:8000/products").then(res => res.json())
-    .then(data => {
+// export const fetchProducts = (): any => async dispatch => {
+//     const response = await ax.get('/products');
+
+//     console.log(response);
+
+//     return dispatch({
+//                     type: FETCH_PRODUCTS, 
+//                     payload: response.data
+//                 }); 
+// };
+
+ export const fetchProducts = () : ThunkAction<void, AppState, null, Action<string>> => (dispatch) => {
+     fetch("http://10.0.0.138/products_api/public/index.php/products").then(res => res.json())
+     .then(data => { 
         
-        return dispatch({
-            type: FETCH_PRODUCTS, 
-            payload: data
-        });        
-    });
-};
+         return dispatch({
+             type: FETCH_PRODUCTS, 
+             payload: data
+         });        
+     });
+ };
 
 export const filterProducts = (products: Array<IProduct>, size: string)  : ThunkAction<void, AppState, null, Action<string>> => (dispatch) => {
     return dispatch({ 

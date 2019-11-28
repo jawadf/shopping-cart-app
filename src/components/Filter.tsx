@@ -9,7 +9,7 @@ const Filter:  React.FC = (props: any) => {
     return (
         <div className="row" >
             <div className="col-md-4">
-                {props.filterProducts.length} products found.
+                {props.filteredProducts.length} products found.
             </div>
             <div className="col-md-4">
                 <label>
@@ -17,7 +17,7 @@ const Filter:  React.FC = (props: any) => {
                     <select 
                         className="form-control" 
                         value={props.sort}
-                        onChange={(e) => props.sortProducts(props.filterProducts, e.target.value)}
+                        onChange={(e) => props.sortProducts(props.filteredProducts, e.target.value)}
                     >
                         <option value="">Select</option>
                         <option value="lowest">lowest to highest</option>

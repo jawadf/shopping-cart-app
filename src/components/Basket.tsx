@@ -6,17 +6,18 @@ import { AppState } from '../reducers/index';
 import { IProduct, IBasketProps} from '../types';
  
   
-const Basket:  React.FC  = (props: any) => {
+const Basket:  React.FC<IBasketProps>  = (props) => {
 
     const { cartItems } = props;
 
     return (
         <div className="alert alert-info" >
-            {cartItems.length === 0 ? " Basket is empty. " : <p> You have {cartItems.length} products in the basket.</p>}
+            <div><i className="shopping cart icon">&nbsp;</i> Cart</div>
+            {cartItems.length === 0 ? <div>Basket is empty.</div> : <p> You have {cartItems.length} products in the basket.</p>}
             {cartItems.length > 0 && (
                 <div>
                     <ul>
-                        {cartItems.map((item: any) => 
+                        {cartItems.map((item: IProduct) => 
                             (
                             <li key={item.id}>
                                 <b>{item.title}</b>
@@ -36,8 +37,7 @@ const Basket:  React.FC  = (props: any) => {
                     <button className="btn btn-primary" onClick={() => alert("Checkout")}>Checkout</button>
                 </div>
                 )
-            }
-            
+            } 
         </div>
     );
 }
