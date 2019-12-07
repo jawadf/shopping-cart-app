@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_SIZE, ORDER_PRODUCTS_BY_PRICE } from "./types";
+import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_SIZE, ORDER_PRODUCTS_BY_PRICE, SHOW_PRODUCT } from "./types";
 import { IProduct } from '../types';
 import { AppState } from '../reducers/index';
 import { Action } from 'redux';
@@ -20,8 +20,8 @@ const ax = axios.create({
 //                 }); 
 // };
 
- export const fetchProducts = () : ThunkAction<void, AppState, null, Action<string>> => (dispatch) => {
-     fetch("http://10.0.0.138/products_api/public/index.php/products").then(res => res.json())
+export const fetchProducts = () : ThunkAction<void, AppState, null, Action<string>> => (dispatch) => {
+     fetch("http://localhost:8000/products").then(res => res.json())
      .then(data => { 
         
          return dispatch({
@@ -29,7 +29,20 @@ const ax = axios.create({
              payload: data
          });        
      });
- };
+};
+
+export const fetchOneProduct = (id: Number) : ThunkAction<void, AppState, null, Action<string>> => (dispatch) => {
+     fetch(`http://localhost:8000/products/${id}`).then(res => res.json())
+     .then(data => { 
+        
+         return dispatch({
+             type: SHOW_PRODUCT, 
+             payload: data
+         });        
+     });
+};
+
+
 
 export const filterProducts = (products: Array<IProduct>, size: string)  : ThunkAction<void, AppState, null, Action<string>> => (dispatch) => {
     return dispatch({ 

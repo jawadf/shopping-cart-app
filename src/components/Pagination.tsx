@@ -7,13 +7,13 @@ const Pagination  = ({
     currentPage,
     handlePageClick,
     handlePreviousClick,
-    handleNextClick
+    handleNextClick 
    }) => {
 
     return (
-        <div className="ui pagination menu">
+        <div className="ui pagination menu my-pagination">
             <a className="item" onClick={(e: any) => handlePreviousClick(e)}  href="#" >
-                Previous
+                <i className="angle left icon" />
             </a>
         {[...Array(pagesCount)].map((page, i) => (
               <a className={i === currentPage ? "active item" : "item"} key={i} onClick={(e: any) => handlePageClick(e, i)} href="#">
@@ -21,7 +21,7 @@ const Pagination  = ({
               </a>
            ))}
             <a className="item" onClick={(e: any) => handleNextClick(e)}  href="#" >
-                Next
+                <i className="angle right icon"/>
             </a>
         </div>
     );

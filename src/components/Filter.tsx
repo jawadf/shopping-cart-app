@@ -7,34 +7,33 @@ import { IFilterProps } from '../types';
 const Filter:  React.FC = (props: any) => {
  
     return (
-        <div className="row" >
-            <div className="col-md-4">
+        <div className="filter" >
+            <div className="filter-count">
                 {props.filteredProducts.length} products found.
             </div>
-            <div className="col-md-4">
-                <label>
-                    Order by
-                    <select 
-                        className="form-control" 
-                        value={props.sort}
-                        onChange={(e) => props.sortProducts(props.filteredProducts, e.target.value)}
-                    >
-                        <option value="">Select</option>
-                        <option value="lowest">lowest to highest</option>
-                        <option value="highest">highest to lowest</option>
+            <div className="filter-sort">
+                     <label>Order by</label>
+                     <select
+                         className="ui selection dropdown" 
+                         value={props.sort}
+                         onChange={(e) => props.sortProducts(props.filteredProducts, e.target.value)}
+                     >
+                         <i className="dropdown icon">&nbsp;</i>
+                         <option value="">none</option>
+                         <option value="lowest">lowest to highest</option>
+                         <option value="highest">highest to lowest</option>
 
-                    </select>
-                </label>
+                     </select>
+                
             </div>
-            <div className="col-md-4">
-                <label>
-                    Filter size
+            <div className="filter-size">
+                <label> Filter size</label>
                     <select 
-                        className="form-control" 
+                        className="ui selection dropdown" 
                         value={props.size}
                         onChange={(e) => props.filterProducts(props.products, e.target.value)}
                     >
-                        <option value="">ALL</option>
+                        <option value="">All</option>
                         <option value="x">XS</option>
                         <option value="s">S</option>
                         <option value="m">M</option>
@@ -42,7 +41,7 @@ const Filter:  React.FC = (props: any) => {
                         <option value="xl">XL</option>
                         <option value="xxl">XXL</option>
                     </select>
-                </label>
+               
             </div>
         </div>
     );

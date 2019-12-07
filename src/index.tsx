@@ -9,9 +9,9 @@ import { rootReducer } from './reducers';
 
 const initialState: any = {};
 
-//  if(localStorage.getItem('cartItems') ) {
-//      initialState.cart = {items: JSON.parse(localStorage.getItem('cartItems') as string)};
-//  }
+  if(localStorage.getItem('cartItems') ) {
+      initialState.cart = {items: JSON.parse(localStorage.getItem('cartItems') as string)};
+  }
 
 const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(thunk)) );
 

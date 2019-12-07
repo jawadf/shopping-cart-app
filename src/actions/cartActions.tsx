@@ -10,7 +10,7 @@ export const addToCart = (items: any, product: IProduct): ThunkAction<void, AppS
 
     let productAlreadyInCart = false; 
     cartItems.forEach((item: any) => {
-      if(item.id == product.id) {
+      if(item.id == product.id) {  
         productAlreadyInCart = true;
         item.count++;
       } 

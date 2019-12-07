@@ -9,3 +9,71 @@
 .display-block {
     display: block;
 }
+
+.product-image {
+    display: block;
+    height: 290px!important;
+    object-fit: scale-down!important;
+}
+
+.product-image-container {
+    height: 290px;
+    width: auto;
+}
+
+.my-pagination {
+    padding-right: 0!important;
+    padding-left: 0!important;
+}
+
+
+.filter-container {
+    padding-left: 180px;
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+    height: 180px;
+}
+
+.filter-hr {
+    margin-bottom: 100px;
+    height: .7px;
+    width: 1480px;
+    border: none;
+    background-color: rgba(139, 139, 139, 0.534);
+
+}
+
+.filter label {
+    margin-right: 10px;
+}
+
+.filter select {
+    height: 45px!important;
+}
+
+
+.filter-count {
+    margin-right: 500px;
+}
+
+.filter-sort {
+    margin-right: 30px;
+}
+
+
+.cart-card {
+    margin-left: -150px!important;
+    background-color: rgba(245, 222, 157, 0.15)!important;
+}
+
+.cart-item-title {
+    font-size: 15px;
+}
+
+.cart-total {
+    font-size: 20px;
+    margin: 25px 0;;
+}

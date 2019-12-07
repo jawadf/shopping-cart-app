@@ -54,6 +54,7 @@ export interface IProductState {
   filteredItems: Array<IProduct>;
   sort: string;
   size: string;
+  selectedItem: any;
 }
 
 export interface ICartState {
