@@ -4,7 +4,7 @@ import { filterProducts, sortProducts } from '../actions/productActions';
 import { AppState } from '../reducers/index';
 import { IFilterProps } from '../types';
   
-const Filter:  React.FC = (props: any) => {
+const Filter:  React.FC<IFilterProps> = (props) => {
  
     return (
         <div className="filter" >
@@ -48,7 +48,7 @@ const Filter:  React.FC = (props: any) => {
     
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: AppState) => {
     return {
         products: state.products.items,
         filteredProducts: state.products.items,

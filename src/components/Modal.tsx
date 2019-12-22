@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import history from '../history';
+import { Link } from 'react-router-dom';
 
 
 const Modal = (props) => {
@@ -22,7 +23,8 @@ const Modal = (props) => {
 
 
       <div className="ui standard modal visible active" onClick={(e) => e.stopPropagation()}>
-        <i className="close icon" onClick={() => history.push('/')}>&nbsp;</i>
+      <Link to="/" className="close icon" ><i className="close icon" >&nbsp;</i></Link> 
+        
         <div className="header">
           {props.header}
         </div>

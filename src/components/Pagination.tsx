@@ -12,15 +12,15 @@ const Pagination  = ({
 
     return (
         <div className="ui pagination menu my-pagination">
-            <a className="item" onClick={(e: any) => handlePreviousClick(e)}  href="#" >
+            <a className="item" onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => handlePreviousClick(e)}  href="#" >
                 <i className="angle left icon" />
             </a>
         {[...Array(pagesCount)].map((page, i) => (
-              <a className={i === currentPage ? "active item" : "item"} key={i} onClick={(e: any) => handlePageClick(e, i)} href="#">
+              <a className={i === currentPage ? "active item" : "item"} key={i} onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => handlePageClick(e, i)} href="#">
                 {i + 1}
               </a>
            ))}
-            <a className="item" onClick={(e: any) => handleNextClick(e)}  href="#" >
+            <a className="item" onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => handleNextClick(e)}  href="#" >
                 <i className="angle right icon"/>
             </a>
         </div>

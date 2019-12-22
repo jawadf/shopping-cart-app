@@ -21,7 +21,7 @@ const ax = axios.create({
 // };
 
 export const fetchProducts = () : ThunkAction<void, AppState, null, Action<string>> => (dispatch) => {
-     fetch("http://localhost:8000/products").then(res => res.json())
+     fetch("http://167.172.103.104/products_api/public/index.php/products").then(res => res.json())
      .then(data => { 
         
          return dispatch({
@@ -32,7 +32,7 @@ export const fetchProducts = () : ThunkAction<void, AppState, null, Action<strin
 };
 
 export const fetchOneProduct = (id: Number) : ThunkAction<void, AppState, null, Action<string>> => (dispatch) => {
-     fetch(`http://localhost:8000/products/${id}`).then(res => res.json())
+     fetch(`http://167.172.103.104/products_api/public/index.php/products/${id}`).then(res => res.json())
      .then(data => { 
         
          return dispatch({

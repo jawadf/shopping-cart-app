@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchOneProduct } from '../actions/productActions';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { addToCart } from '../actions/cartActions';
 import { IProduct, IProductProps} from '../types';
 import Modal from './Modal';
@@ -41,8 +41,6 @@ const ShowProduct:  React.FC<any>  = (props) => {
           </div>
           </>
         );
-    
-       // return <div>{`You are know seeing a product named: ${props.selectedProduct.title}`}</div>;
       }
 
         return (
@@ -65,63 +63,3 @@ const mapStateToProps = (state: AppState) => {
 };
 
 export default connect(mapStateToProps, { fetchOneProduct, addToCart })(ShowProduct);
-
-
-/**
- * import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { fetchOneProduct } from '../actions/productActions';
-import { Link } from "react-router-dom";
-import { addToCart } from '../actions/cartActions';
-import { IProduct, IProductProps} from '../types';
-import Modal from './Modal';
-import history from '../history';
-import { AppState } from '../reducers/index';
-
-const ShowProduct:  React.FC<any>  = (props) => {z
-
-    useEffect(() => {
-        props.fetchOneProduct(props.match.params.id);
-    }, []);
-
-    const add = () => {
-        props.addToCart(props.match.params.id);
-      } 
-    
-    const renderButtons = () => {
-        return (
-          <React.Fragment>
-            <Link to='/' className="ui button" style={{fontSize: 'inherit'}}>Cancel</Link>
-            <button onClick={add} className="ui button teal" style={{fontSize: 'inherit'}}>Add to cart</button>
-          </React.Fragment>
-        );
-      }
-    
-    const renderContent = () => {
-        if(!props.selectedProduct) {
-          return <div>The selected Product is rendered!</div>;
-        }
-    
-        return <div>{`You are know seeing a product named: ${props.selectedProduct.title}`}</div>;
-      }
-
-        return (
-        <Modal 
-            title="Delete Post"
-            content={renderContent()}
-            actions={renderButtons()}
-            onDismiss={() => history.push('/')}
-        />
-        );
-      
-}
-
-const mapStateToProps = (state: AppState) => {
-    return {
-        selectedProduct: state.products.selectedItem,
-    };
-};
-
-export default connect(mapStateToProps, { fetchOneProduct })(ShowProduct);
-
- */

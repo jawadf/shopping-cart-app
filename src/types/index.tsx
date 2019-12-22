@@ -39,12 +39,12 @@ export interface IBasketProps {
 }
 
 export interface IFilterProps {
-  products: Array<IProduct>
-  filteredProducts: Array<IProduct>
-  size: string, 
-  sort: string,
-  filterProducts: any,
-  sortProducts: any
+  products: Array<IProduct>;
+  filteredProducts: Array<IProduct>;
+  size: string;
+  sort: string;
+  filterProducts: any;
+  sortProducts: any;
 }
 
 /************  State Types  *************/

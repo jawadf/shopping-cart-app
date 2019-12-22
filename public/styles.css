@@ -10,9 +10,13 @@
     display: block;
 }
 
+/* .product-card {
+    
+} */
+
 .product-image {
     display: block;
-    height: 290px!important;
+    height: 270px!important;
     object-fit: scale-down!important;
 }
 
@@ -24,6 +28,8 @@
 .my-pagination {
     padding-right: 0!important;
     padding-left: 0!important;
+    margin: 50px auto!important;
+    
 }
 
 
@@ -76,4 +82,32 @@
 .cart-total {
     font-size: 20px;
     margin: 25px 0;;
+}
+
+
+.teal {
+    background-color: #0eb9d8!important;
+
+}
+
+.teal:hover,
+.teal:active {
+    background-color: #009bb6!important;
+
+}
+
+
+
+/********************************************
+*               FOOTER
+********************************************/
+
+.legal {
+    margin: 0 auto;
+    width: 50%;
+    border-top: 1px solid #aaaaaa71;
+    padding: 50px 0;
+    color: #4b3b3b;
+    text-align: center;
+    font-size: 1.3rem;
 }

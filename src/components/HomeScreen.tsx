@@ -21,18 +21,15 @@ const HomeScreen: React.FC = () => {
     <>
     <div className="ui container margin-tb-small">
       <div className="ui secondary menu">
-        <a href="#" className="active item">
-          Home
-        </a>
-        <a href="#" className="item">
-          Categories
+        <a href="#" className="ui item">
+          <i className="bicycle icon">&nbsp;</i> BikeShop
         </a>
         <div className="right menu">
-          <a href="#" className="ui item">
-            <i className="shopping cart icon">&nbsp;</i> Cart
+          <a href="#" className="active item">
+            Home
           </a>
-          <a href="#" className="ui item">
-            <i className="heart icon">&nbsp;</i> Wishlist
+          <a href="#" className="item">
+            Categories
           </a>
         </div>
       </div>
@@ -52,8 +49,10 @@ const HomeScreen: React.FC = () => {
           <Basket />
         </div>
       </div>
-      <footer className="margin-tb-medium">
-        Footer
+      <footer>
+              <div className="legal">
+                  <p>&copy; BikeShop 2019 - Developer by Jawad F.</p>
+              </div>
       </footer>
     </div>
     </>

@@ -16,20 +16,20 @@ const Products:  React.FC<IProductProps>  = (props) => {
     useEffect(() => {
         props.fetchProducts();
     }, []);
-
-    const handlePageClick = (e: any, index: any) => {
+    
+    const handlePageClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, index: number) => {
         e.preventDefault();
         setCurrentPage(index);
      };
 
-    const handlePreviousClick = (e: any) => {
+    const handlePreviousClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         e.preventDefault();
         if((currentPage <= 0) === false) {
             setCurrentPage(currentPage - 1);
         } 
         
      };
-    const handleNextClick = (e: any) => {
+    const handleNextClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         e.preventDefault();
          let pagesCount = Math.ceil(props.products.length / pageSize);
         if((currentPage >= pagesCount-1) === false) {
@@ -42,7 +42,7 @@ const Products:  React.FC<IProductProps>  = (props) => {
         .map(product => {
           return (
             
-            <Link to={`/products/${product.id}`} key={product.id} className="ui card wide three column">
+            <Link to={`/products/${product.id}`} key={product.id} className="ui card wide three column product-card">
                 <div className="image product-image-container">
                     <img src={`/products/${product.sku}.jpeg`} className="product-image" alt={product.title} />
                 </div>
@@ -74,10 +74,8 @@ const Products:  React.FC<IProductProps>  = (props) => {
 
     return (
         <div className="ui grid container margin-tb-medium">
-           <div className="ui grid three centered stackable link cards">
-           
-           {productItems}
-           
+            <div className="ui grid three centered stackable link cards">
+                {productItems}
             </div> 
             <Pagination
                 pagesCount={Math.ceil(props.products.length / pageSize)}
